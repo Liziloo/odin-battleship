@@ -91,5 +91,18 @@ describe('Gameboard', () => {
     test('Second attack on coordinates returns false', () => {
         board.receiveAttack(0,0);
         expect(board.receiveAttack(0, 0)).toBe(false);
+    });
+
+    test('Sinks ship if all coordinates hit', () => {
+        board.placeShip(0, 0, 2, 'horizontal');
+        board.receiveAttack(0,0);
+
+        expect(board.grid[0][0].ship.sunk).toBe(false);
+        expect(board.grid[0][1].ship.sunk).toBe(false);
+
+        board.receiveAttack(1,0);
+
+        expect(board.grid[0][0].ship.sunk).toBe(true);
+        expect(board.grid[0][1].ship.sunk).toBe(true);
     })
 })

@@ -9,6 +9,7 @@ class Ship {
 
     hit() {
         this.hits++;
+        this.sunk = this.isSunk();
     }
 
     isSunk() {
