@@ -57,4 +57,11 @@ class Gameboard {
         }
         return true;
     }
+
+    allSunk() {
+        for (let ship of this.ships) {
+            if (ship.sunk === false) return false;
+        }
+        return true;
+    }
 }
