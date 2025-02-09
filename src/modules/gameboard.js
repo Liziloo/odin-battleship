@@ -9,11 +9,18 @@ class Gameboard {
     }
 
     createGrid() {
-        return Array(10).fill().map(() => Array(10).fill({hit: false, ship: null}));
+        const grid = [];
+        for (let i = 0; i < 10; i++) {
+            grid[i] = [];
+            for (let j = 0; j < 10; j++) {
+                const cell = {hit: false, ship: null};
+                grid[i][j] = cell;
+            }
+        }
+        return grid;
     }
 
     placeShip(x, y, length, direction) {
-        console.log(this.grid);
         if (x < 0 || y < 0 || x > 9 || y > 9 || x + length - 1 > 9 || y + length - 1 > 9) return false;
         
         // Make sure space not already occupied
@@ -33,7 +40,7 @@ class Gameboard {
                 this.grid[y][i + x].ship = ship;
             }
         } else {
-            for (let i = y; i < length; i++) {
+            for (let i = 0; i < length; i++) {
                 this.grid[i + y][x].ship = ship;
             }
         }
@@ -43,10 +50,10 @@ class Gameboard {
 
     receiveAttack(x, y) {
         if (x < 0 || x > 9 || y < 0 || y > 9) return false;
-        if (this.grid[x][y].hit === true) return false;
-        this.grid[x][y].hit = true;
-        if (this.grid[x][y].ship) {
-            this.grid[x][y].ship.hit();
+        if (this.grid[y][x].hit === true) return false;
+        this.grid[y][x].hit = true;
+        if (this.grid[y][x].ship) {
+            this.grid[y][x].ship.hit();
         }
         return true;
     }

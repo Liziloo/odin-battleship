@@ -15,21 +15,21 @@ describe('Gameboard', () => {
         
         for (let i = 0; i < 10; i++) {
             for (let j = 0; j < 10; j++) {
-                if ((i === 0 && j === 2) || (i === 1 && j === 2)) {
-                    expect(board.grid[j][i]).toEqual({hit: false, ship: expect.any(Ship)});
+                if (i === 2 && (j === 0 || j === 1)) {
+                    expect(board.grid[i][j]).toEqual({hit: false, ship: expect.any(Ship)});
                 } else {
                     expect(board.grid[i][j]).toEqual({hit: false, ship: null});
                 }
             }
         }
     })
-/*
+
     test('places new submarine on grid', () => {
         board.placeShip(0, 2, 3, 'horizontal');
         
         for (let i = 0; i < 10; i++) {
             for (let j = 0; j < 10; j++) {
-                if ((i === 0 && j === 2) || (i === 1 && j === 2) || (i === 2 && j === 2)) {
+                if (i === 2 && (j === 0 || j === 1 || j === 2)) {
                     expect(board.grid[i][j]).toEqual({hit: false, ship: expect.any(Ship)});
                 } else {
                     expect (board.grid[i][j]).toEqual({hit: false, ship: null});
@@ -49,8 +49,15 @@ describe('Gameboard', () => {
     test('places a ship vertically', () => {
         board.placeShip(0, 8, 2, 'vertical');
 
-        expect(board.grid[0][8]).toEqual({hit: false, ship: expect.any(Ship)});
-        expect(board.grid[0][9]).toEqual({hit: false, ship: expect.any(Ship)});
+        for (let i = 0; i < 10; i++) {
+            for (let j = 0; j < 10; j++) {
+                if (j === 0 && (i === 8 || i === 9)) {
+                    expect(board.grid[i][j]).toEqual({hit: false, ship: expect.any(Ship)});
+                } else {
+                    expect(board.grid[i][j]).toEqual({hit: false, ship: null});
+                }
+            }
+        }
     })
 
     test('returns false for vertical ship whose length goes out of bounds', () => {
@@ -59,18 +66,16 @@ describe('Gameboard', () => {
 
     test('returns false for placing ship on top of other ship', () => {
         board.placeShip(0, 0, 3, 'horizontal');
-        board.placeShip(9, 0, 2, 'vertical');
-        board.placeShip(0, 9, 3, 'horizontal');
-        expect(board.placeShip(1, 0, 3, 'horizontal')).toBeFalsy();
-        expect(board.placeShip(8, 0, 2, 'horizontal')).toBeFalsy();
-        expect(board.placeShip(0, 8, 2, 'vertical')).toBeFalsy();
+
+        expect(board.placeShip(1, 0, 2, 'horizontal')).toBeFalsy();
+        expect(board.placeShip(1, 0, 2, 'vertical')).toBeFalsy();
     })
 
     test('records hit on ship', () => {
         board.placeShip(0, 1, 2, 'horizontal');
         board.receiveAttack(0,1);
-        expect(board.grid[0][1]).toEqual({hit: true, ship: expect.any(Ship)});
-        expect(board.grid[0][1].ship.hits).toBeGreaterThan(0);
+        expect(board.grid[1][0]).toEqual({hit: true, ship: expect.any(Ship)});
+        expect(board.grid[1][0].ship.hits).toBeGreaterThan(0);
     })
 
     test('records strike on water', () => {
@@ -87,5 +92,4 @@ describe('Gameboard', () => {
         board.receiveAttack(0,0);
         expect(board.receiveAttack(0, 0)).toBe(false);
     })
-        */
 })
