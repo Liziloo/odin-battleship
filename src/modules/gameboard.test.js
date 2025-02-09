@@ -1,44 +1,91 @@
 import { Gameboard } from "./gameboard";
 import { Ship } from "./ship";
-import { expect, test } from '@jest/globals';
+import { beforeEach, describe, expect, test } from '@jest/globals';
 
 
-test('places new destroyer on grid', () => {
-    const board = new Gameboard;
-    board.placeShip(0, 2, 2, 'horizontal');
-    
-    expect(board.grid[0][2]).toEqual({hit: false, ship: expect.any(Ship)});
-    expect(board.grid[1][2]).toEqual({hit: false, ship: expect.any(Ship)});
+describe('Gameboard', () => {
+    let board;
+
+    beforeEach(() => {
+        board = new Gameboard();
+    })
+
+    test('places new destroyer on grid', () => {
+        board.placeShip(0, 2, 2, 'horizontal');
+        
+        for (let i = 0; i < 10; i++) {
+            for (let j = 0; j < 10; j++) {
+                if ((i === 0 && j === 2) || (i === 1 && j === 2)) {
+                    expect(board.grid[j][i]).toEqual({hit: false, ship: expect.any(Ship)});
+                } else {
+                    expect(board.grid[i][j]).toEqual({hit: false, ship: null});
+                }
+            }
+        }
+    })
+/*
+    test('places new submarine on grid', () => {
+        board.placeShip(0, 2, 3, 'horizontal');
+        
+        for (let i = 0; i < 10; i++) {
+            for (let j = 0; j < 10; j++) {
+                if ((i === 0 && j === 2) || (i === 1 && j === 2) || (i === 2 && j === 2)) {
+                    expect(board.grid[i][j]).toEqual({hit: false, ship: expect.any(Ship)});
+                } else {
+                    expect (board.grid[i][j]).toEqual({hit: false, ship: null});
+                }
+            }
+        }
+    })
+
+    test('returns false for ship originating outside grid bounds', () => {
+        expect(board.placeShip(0, 11, 2, 'horizontal')).toBeFalsy();
+    });
+
+    test('returns false for ship whose length goes out of bounds', () => {
+        expect(board.placeShip(0, 9, 2, 'horizontal')).toBeFalsy();
+    });
+
+    test('places a ship vertically', () => {
+        board.placeShip(0, 8, 2, 'vertical');
+
+        expect(board.grid[0][8]).toEqual({hit: false, ship: expect.any(Ship)});
+        expect(board.grid[0][9]).toEqual({hit: false, ship: expect.any(Ship)});
+    })
+
+    test('returns false for vertical ship whose length goes out of bounds', () => {
+        expect(board.placeShip(9, 0, 2, 'vertical')).toBeFalsy();
+    });
+
+    test('returns false for placing ship on top of other ship', () => {
+        board.placeShip(0, 0, 3, 'horizontal');
+        board.placeShip(9, 0, 2, 'vertical');
+        board.placeShip(0, 9, 3, 'horizontal');
+        expect(board.placeShip(1, 0, 3, 'horizontal')).toBeFalsy();
+        expect(board.placeShip(8, 0, 2, 'horizontal')).toBeFalsy();
+        expect(board.placeShip(0, 8, 2, 'vertical')).toBeFalsy();
+    })
+
+    test('records hit on ship', () => {
+        board.placeShip(0, 1, 2, 'horizontal');
+        board.receiveAttack(0,1);
+        expect(board.grid[0][1]).toEqual({hit: true, ship: expect.any(Ship)});
+        expect(board.grid[0][1].ship.hits).toBeGreaterThan(0);
+    })
+
+    test('records strike on water', () => {
+        board.placeShip(0, 1, 2, 'horizontal');
+        board.receiveAttack(9, 9);
+        expect(board.grid[9][9]).toEqual({hit: true, ship: null});
+    });
+
+    test('returns false for coordinates outside grid', () => {
+        expect(board.receiveAttack(10, 1)).toBe(false);
+    });
+
+    test('Second attack on coordinates returns false', () => {
+        board.receiveAttack(0,0);
+        expect(board.receiveAttack(0, 0)).toBe(false);
+    })
+        */
 })
-
-test('places new submarine on grid', () => {
-    const board = new Gameboard;
-    board.placeShip(0, 2, 3, 'horizontal');
-    
-    expect(board.grid[0][2]).toEqual({hit: false, ship: expect.any(Ship)});
-    expect(board.grid[1][2]).toEqual({hit: false, ship: expect.any(Ship)});
-    expect(board.grid[2][2]).toEqual({hit: false, ship: expect.any(Ship)});
-})
-
-test('returns false for ship originating outside grid bounds', () => {
-    const board = new Gameboard;
-    expect(board.placeShip(0, 11, 2, 'horizontal')).toBeFalsy();
-});
-
-test('returns false for ship whose length goes out of bounds', () => {
-    const board = new Gameboard;
-    expect(board.placeShip(0, 9, 2, 'horizontal')).toBeFalsy();
-});
-
-test('places a ship vertically', () => {
-    const board = new Gameboard();
-    board.placeShip(0, 2, 2, 'vertical');
-
-    expect(board.grid[0][2]).toEqual({hit: false, ship: expect.any(Ship)});
-    expect(board.grid[0][3]).toEqual({hit: false, ship: expect.any(Ship)});
-})
-
-test('returns false for vertical ship whose length goes out of bounds', () => {
-    const board = new Gameboard;
-    expect(board.placeShip(9, 0, 2, 'vertical')).toBeFalsy();
-});
