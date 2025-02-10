@@ -5,7 +5,7 @@ export { Gameboard };
 class Gameboard {
     constructor() {
         this.grid = this.createGrid(),
-        this.ships = [];
+        this.ships = []
     }
 
     createGrid() {
