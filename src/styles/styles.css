@@ -4,11 +4,14 @@
 
 .board {
     display: grid;
-    grid: repeat(10, 8vh) / repeat(10, 8vh);
+    grid-auto-flow: column;
+    grid-template-rows: repeat(10, 50px);
+    grid-template-columns: repeat(10, 50px);
 }
 
 .cell {
     background-color: blue;
+    
 }
 
 .ship {
