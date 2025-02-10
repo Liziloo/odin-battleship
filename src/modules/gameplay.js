@@ -3,6 +3,7 @@ import { Player } from "./player.js";
 const player1 = new Player('real');
 const player2 = new Player('real');
 
+// Place all ships for both players
 // Patrol boats
 player1.board.placeShip(0, 0, 2, 'horizontal');
 player1.board.placeShip(0, 1, 2, 'horizontal');
@@ -32,5 +33,19 @@ player1.board.placeShip(0, 9, 3, 'horizontal');
 player1.board.placeShip(2, 0, 3, 'horizontal');
 player1.board.placeShip(2, 1, 3, 'horizontal');
 
-console.log(player1.board.grid);
-console.log(player1.board.ships.length);
+player2.board.placeShip(0, 9, 3, 'horizontal');
+player2.board.placeShip(2, 0, 3, 'horizontal');
+player2.board.placeShip(2, 1, 3, 'horizontal');
+
+// Battleships
+player1.board.placeShip(2, 2, 4, 'horizontal');
+player1.board.placeShip(2, 3, 4, 'horizontal');
+
+player2.board.placeShip(2, 2, 4, 'horizontal');
+player2.board.placeShip(2, 3, 4, 'horizontal');
+
+// Carriers
+player1.board.placeShip(2, 4, 5, 'horizontal');
+
+player2.board.placeShip(2, 4, 5, 'horizontal');
+
