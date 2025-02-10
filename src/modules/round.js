@@ -1,4 +1,6 @@
+import { loadGameboard } from "./loadGameboard.js";
 import { Player } from "./player.js";
+export { round };
 
 const player1 = new Player('real');
 const player2 = new Player('real');
@@ -49,3 +51,6 @@ player1.board.placeShip(2, 4, 5, 'horizontal');
 
 player2.board.placeShip(2, 4, 5, 'horizontal');
 
+const round = () => {
+    loadGameboard(player1.board);
+}

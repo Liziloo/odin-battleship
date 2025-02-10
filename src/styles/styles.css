@@ -1,0 +1,16 @@
+.container {
+    width: 75vw;
+}
+
+.board {
+    display: grid;
+    grid: repeat(10, 8vh) / repeat(10, 8vh);
+}
+
+.cell {
+    background-color: blue;
+}
+
+.ship {
+    background-color: red;
+}
