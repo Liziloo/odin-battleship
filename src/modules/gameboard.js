@@ -1,4 +1,4 @@
-import { Ship } from "./ship";
+import { Ship } from "./ship.js";
 
 export { Gameboard };
 
@@ -21,7 +21,7 @@ class Gameboard {
     }
 
     placeShip(x, y, length, direction) {
-        if (x < 0 || y < 0 || x > 9 || y > 9 || x + length - 1 > 9 || y + length - 1 > 9) return false;
+        if (x < 0 || y < 0 || x > 9 || y > 9) return false;
         
         // Make sure space not already occupied
         if (direction === 'horizontal') {
