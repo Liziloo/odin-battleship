@@ -25,10 +25,12 @@ class Gameboard {
         
         // Make sure space not already occupied
         if (direction === 'horizontal') {
+            if (y + length - 1 > 9) return false;
             for (let i = 0; i < length; i++) {
                 if (this.grid[y][i + x].ship !== null) return false;
             }
         } else {
+            if (x + length - 1 > 9) return false;
             for (let i = 0; i < length; i++) {
                 if (this.grid[i + y][x].ship !== null) return false;
             }
