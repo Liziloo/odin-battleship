@@ -65,6 +65,11 @@ let otherPlayer = player2;
             const xCoord = e.target.dataset.x;
             const yCoord = e.target.dataset.y;
             otherPlayer.board.receiveAttack(xCoord, yCoord);
+            if (otherPlayer.board.grid[xCoord][yCoord].ship !== null) {
+                alert("It's a hit!")
+            } else {
+                alert("“Giving up is the only sure way to fail.”")
+            }
             const finished = otherPlayer.board.allSunk();
             if (!finished) {
                 if (currentPlayer.type === 'real' && otherPlayer.type === 'real') {
