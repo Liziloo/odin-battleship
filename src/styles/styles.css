@@ -2,7 +2,7 @@
     width: 75vw;
 }
 
-.board {
+.my-board, .enemy-board {
     display: grid;
     grid-auto-flow: column;
     grid-template-rows: repeat(10, 50px);
