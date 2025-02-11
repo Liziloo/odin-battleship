@@ -56,17 +56,20 @@ let currentPlayer = player1;
 let otherPlayer = player2;
 
 (function() {
-    const myBoardDiv = document.querySelector('.my-board');
-    myBoardDiv.addEventListener('click', (e) => {
-        const xCoord = e.target.dataset.x;
-        const yCoord = e.target.dataset.y;
-        currentPlayer.board.receiveAttack(xCoord, yCoord);
-        const finished = currentPlayer.board.allSunk();
-        if (!finished) {
-            currentPlayer = currentPlayer === player1 ? player2 : player1;
-            otherPlayer = otherPlayer === player1 ? player2 : player1;
-            round(currentPlayer, otherPlayer);
+    const enemyBoardDiv = document.querySelector('.enemy-board');
+    enemyBoardDiv.addEventListener('click', (e) => {
+        if (e.target.classList.contains('cell')) {
+            const xCoord = e.target.dataset.x;
+            const yCoord = e.target.dataset.y;
+            otherPlayer.board.receiveAttack(xCoord, yCoord);
+            const finished = otherPlayer.board.allSunk();
+            if (!finished) {
+                currentPlayer = currentPlayer === player1 ? player2 : player1;
+                otherPlayer = otherPlayer === player1 ? player2 : player1;
+                round(currentPlayer, otherPlayer);
+            }
         }
+       
     })
     round(currentPlayer, otherPlayer);
 })();
