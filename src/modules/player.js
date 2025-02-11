@@ -7,6 +7,6 @@ class Player {
         if (type !== 'real' && type !== 'computer') return;
         this.type = type,
         this.board = new Gameboard();
-        this.name = 'player';
+        this.name = type;
     }
 }

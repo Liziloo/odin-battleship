@@ -3,9 +3,10 @@ import { Player } from './modules/player.js';
 import './styles/comeau-reset.css';
 import './styles/styles.css';
 import { loadWin } from './modules/loadWin.js';
+import { computerAttack } from './modules/computerLogic.js';
 
 const player1 = new Player('real');
-const player2 = new Player('real');
+const player2 = new Player('computer');
 
 // Place all ships for both players
 // Patrol boats
@@ -65,9 +66,15 @@ let otherPlayer = player2;
             otherPlayer.board.receiveAttack(xCoord, yCoord);
             const finished = otherPlayer.board.allSunk();
             if (!finished) {
-                currentPlayer = currentPlayer === player1 ? player2 : player1;
-                otherPlayer = otherPlayer === player1 ? player2 : player1;
-                round(currentPlayer, otherPlayer);
+                if (currentPlayer.type === 'real' && otherPlayer.type === 'computer') {
+                    currentPlayer = currentPlayer === player1 ? player2 : player1;
+                    otherPlayer = otherPlayer === player1 ? player2 : player1;
+                    round(currentPlayer, otherPlayer);
+                } else {
+                    computerAttack(currentPlayer.board);
+                    round(currentPlayer, otherPlayer);
+                }
+                
             } else {
                 loadWin();
             }
