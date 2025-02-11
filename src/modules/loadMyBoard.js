@@ -9,6 +9,9 @@ const loadMyBoard = (playerBoard) => {
             cellDiv.classList.add('cell');
             cellDiv.dataset.x = i;
             cellDiv.dataset.y = j;
+            if (playerBoard.grid[i][j].hit === true) {
+                cellDiv.classList.add('hit');
+            }
             if (playerBoard.grid[i][j].ship) {
                 cellDiv.classList.add('ship');
                 if (playerBoard.grid[i][j].ship.sunk === true) {
