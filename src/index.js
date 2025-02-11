@@ -58,6 +58,7 @@ let currentPlayer = player1;
 let otherPlayer = player2;
 
 (function() {
+    round(currentPlayer, otherPlayer);
     const enemyBoardDiv = document.querySelector('.enemy-board');
     enemyBoardDiv.addEventListener('click', (e) => {
         if (e.target.classList.contains('cell')) {
@@ -66,20 +67,23 @@ let otherPlayer = player2;
             otherPlayer.board.receiveAttack(xCoord, yCoord);
             const finished = otherPlayer.board.allSunk();
             if (!finished) {
-                if (currentPlayer.type === 'real' && otherPlayer.type === 'computer') {
+                if (currentPlayer.type === 'real' && otherPlayer.type === 'real') {
                     currentPlayer = currentPlayer === player1 ? player2 : player1;
                     otherPlayer = otherPlayer === player1 ? player2 : player1;
                     round(currentPlayer, otherPlayer);
                 } else {
-                    computerAttack(currentPlayer.board);
+                    const result = computerAttack(currentPlayer.board);
                     round(currentPlayer, otherPlayer);
+                    if (result === 'hit') {
+                        alert("You've been hit!");
+                    } else {
+                        alert("Evasion effective!")
+                    }
                 }
-                
             } else {
                 loadWin();
             }
         }
        
     })
-    round(currentPlayer, otherPlayer);
 })();

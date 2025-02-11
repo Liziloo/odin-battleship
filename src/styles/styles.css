@@ -31,3 +31,7 @@
 .hit {
     background-color: aqua;
 }
+
+.hit.enemy-ship {
+    background-color: pink;
+}
