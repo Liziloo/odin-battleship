@@ -7,5 +7,6 @@ class Player {
         if (type !== 'real' && type !== 'computer') return;
         this.type = type,
         this.board = new Gameboard();
+        this.name = prompt('Player name?')
     }
 }
