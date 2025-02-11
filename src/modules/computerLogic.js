@@ -1,11 +1,9 @@
 export { computerAttack };
 
 const computerAttack = (board) => {
-    const xCoord = randomCoord();
-    const yCoord = randomCoord();
     let validHit;
     do {
-        validHit = board.receiveAttack(xCoord, yCoord);
+        validHit = board.receiveAttack(randomCoord(), randomCoord());
     } while (!validHit);
     return;
 }
