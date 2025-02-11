@@ -2,6 +2,7 @@ import { round } from './modules/round.js';
 import { Player } from './modules/player.js';
 import './styles/comeau-reset.css';
 import './styles/styles.css';
+import { loadWin } from './modules/loadWin.js';
 
 const player1 = new Player('real');
 const player2 = new Player('real');
@@ -67,6 +68,8 @@ let otherPlayer = player2;
                 currentPlayer = currentPlayer === player1 ? player2 : player1;
                 otherPlayer = otherPlayer === player1 ? player2 : player1;
                 round(currentPlayer, otherPlayer);
+            } else {
+                loadWin();
             }
         }
        
