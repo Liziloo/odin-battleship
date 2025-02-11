@@ -53,18 +53,20 @@ player1.board.placeShip(2, 4, 5, 'horizontal');
 player2.board.placeShip(2, 4, 5, 'horizontal');
 
 let currentPlayer = player1;
+let otherPlayer = player2;
 
 (function() {
-    const boardDiv = document.querySelector('.board');
-    boardDiv.addEventListener('click', (e) => {
+    const myBoardDiv = document.querySelector('.my-board');
+    myBoardDiv.addEventListener('click', (e) => {
         const xCoord = e.target.dataset.x;
         const yCoord = e.target.dataset.y;
         currentPlayer.board.receiveAttack(xCoord, yCoord);
         const finished = currentPlayer.board.allSunk();
         if (!finished) {
             currentPlayer = currentPlayer === player1 ? player2 : player1;
-            round(currentPlayer);
+            otherPlayer = otherPlayer === player1 ? player2 : player1;
+            round(currentPlayer, otherPlayer);
         }
     })
-    round(currentPlayer);
+    round(currentPlayer, otherPlayer);
 })();

@@ -1,8 +1,7 @@
-export { loadGameboard }
+export { loadEnemyBoard };
 
-const loadGameboard = (playerBoard) => {
-    const boardDiv = document.querySelector('.board');
-
+const loadEnemyBoard = (playerBoard) => {
+    const boardDiv = document.querySelector('.enemy-board');
     for (let i = 0; i < playerBoard.grid.length; i++) {
         for (let j = 0; j < playerBoard.grid[i].length; j++) {
             const cellDiv = document.createElement('div');
@@ -18,5 +17,4 @@ const loadGameboard = (playerBoard) => {
             boardDiv.appendChild(cellDiv);
         }
     }
-    
 }
