@@ -13,7 +13,8 @@ let currentPlayer = player1;
 let otherPlayer = player2;
 
 (function() {
-    placeShips(currentPlayer, otherPlayer);
+    placeShips(currentPlayer);
+    placeShips(otherPlayer);
     const enemyBoardDiv = document.querySelector('.enemy-board');
     enemyBoardDiv.addEventListener('click', (e) => {
         if (e.target.classList.contains('cell')) {

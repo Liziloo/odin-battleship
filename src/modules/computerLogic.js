@@ -1,4 +1,4 @@
-export { computerAttack };
+export { computerAttack, randomCoord };
 
 const computerAttack = (board) => {
     let validHit, xCoord, yCoord;
