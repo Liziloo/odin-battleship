@@ -11,6 +11,9 @@ const placeShips = (player) => {
         const h2 = document.querySelector('h2');
         h2.textContent = 'Please place your ships';
 
+        const instructionsDiv = document.querySelector('.instructions');
+        instructionsDiv.textContent = 'For each of your ships in turn, click on the grid square where you would like to place the bow of the ship. When prompted, indicate whether the ship should be placed vertically or horizontally.'
+
         for (let i = 0; i < player.board.grid.length; i++) {
             for (let j = 0; j < player.board.grid[i].length; j++) {
                 const cellDiv = document.createElement('div');
@@ -37,6 +40,7 @@ const placeShips = (player) => {
             if (availableShips.length <= 0) {
                 this.removeEventListener('click', addShip);
                 alert('Wait for the computer to place its ships.')
+                instructionsDiv.textContent = '';
             }
         })
     } else {
