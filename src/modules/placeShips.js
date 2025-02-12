@@ -17,14 +17,13 @@ const placeShips = (player1, player2) => {
             boardDiv.appendChild(cellDiv);
         }
     }
+    const availableShips = [5, 4, 3, 3, 2];
     boardDiv.addEventListener('click', function addShip(e) {
-        const availableShips = [5, 4, 4, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2];
         if (e.target.classList.contains('cell') && availableShips.length > 0) {
             const direction = prompt('Vertical or horizontal?');
-            const length = availableShips.pop();
-            const xCoord = e.target.dataset.x;
-            const yCoord = e.target.dataset.y;
-            console.log(player1.board);
+            const length = availableShips.shift();
+            const xCoord = parseInt(e.target.dataset.x);
+            const yCoord = parseInt(e.target.dataset.y);
             player1.board.placeShip(xCoord, yCoord, length, direction);
         };
         if (availableShips.length <= 0) {
