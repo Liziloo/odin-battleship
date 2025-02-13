@@ -60,6 +60,9 @@ confirmButton.addEventListener('click', function confirmPlacement() {
         alert("To war!");
         placementBoard.style.display = 'none';
         this.removeEventListener('click', confirmPlacement);
+        boardsDiv.style.display = 'flex';
         round(player1, player2);
+    } else {
+        boardsDiv.style.display = 'none';
     }
 })

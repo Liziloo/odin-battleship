@@ -18,7 +18,7 @@
     justify-content: space-around;
 }
 
-.my-board, .enemy-board, #placement-board {
+#my-board, #enemy-board, #placement-board {
     display: grid;
     grid-auto-flow: column;
     grid-template-rows: repeat(10, 50px);

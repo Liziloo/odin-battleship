@@ -1,7 +1,7 @@
 export { loadEnemyBoard };
 
 const loadEnemyBoard = (board) => {
-    const boardDiv = document.querySelector('.enemy-board');
+    const boardDiv = document.getElementById('enemy-board');
     boardDiv.textContent = '';
     for (let i = 0; i < board.grid.length; i++) {
         for (let j = 0; j < board.grid[i].length; j++) {
