@@ -1,5 +1,6 @@
 import { placeShips } from './modules/placeShips.js';
 import { Player } from './modules/player.js';
+import { round } from './modules/round.js';
 import './styles/comeau-reset.css';
 import './styles/styles.css';
 
@@ -13,6 +14,8 @@ const playerCountDiv = document.getElementById('player-count');
 const placeButtonsDiv = document.getElementById('place-buttons');
 const placeButtons = document.querySelectorAll('.place');
 const boardsDiv = document.getElementById('boards');
+const confirmButton = document.getElementById('confirm');
+const placementBoard = document.getElementById('placement-board')
 
 playerCountDiv.addEventListener('click', function getCount(e) {
     if (e.target.tagName === 'BUTTON') {
@@ -42,9 +45,21 @@ placeButtons.forEach((button) => {
         boardsDiv.style.display = 'grid';
         if (e.target.classList.contains('1')) {
             placeShips(player1);
+        } else {
+            placeShips(player2)
         }
         if (placeButtons[0].disabled && placeButtons[1].disabled) {
             placeButtonsDiv.style.display = 'none';
         }
     })
+})
+
+confirmButton.addEventListener('click', function confirmPlacement() {
+    this.style.display = 'none';
+    if (placeButtons[0].disabled && placeButtons[1].disabled) {
+        alert("To war!");
+        placementBoard.style.display = 'none';
+        this.removeEventListener('click', confirmPlacement);
+        round(player1, player2);
+    }
 })
