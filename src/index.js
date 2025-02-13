@@ -14,8 +14,6 @@ const placeButtonsDiv = document.getElementById('place-buttons');
 const placeButtons = document.querySelectorAll('.place');
 const boardsDiv = document.getElementById('boards');
 
-boardsDiv.style.display = 'none';
-
 playerCountDiv.addEventListener('click', function getCount(e) {
     if (e.target.tagName === 'BUTTON') {
         playerCount = e.target.className;
@@ -29,16 +27,24 @@ playerCountDiv.addEventListener('click', function getCount(e) {
             placeButtons[1].textContent = `Deploy ${player2.name}'s ships`;
         } else {
             placeButtons[1].style.display = 'none';
+            placeButtons[1].disabled = true;
             placeButtons[0].textContent = 'Deploy your fleet!';
+            player2.type = 'computer';
         }
         placeButtonsDiv.style.display = 'block';
     }
 });
 
 placeButtons.forEach((button) => {
-    button.addEventListener('click', (e) => {
+    button.addEventListener('click', function callPlace(e) {
+        e.target.removeEventListener('click', callPlace);
+        e.target.disabled = true;
+        boardsDiv.style.display = 'grid';
         if (e.target.classList.contains('1')) {
             placeShips(player1);
+        }
+        if (placeButtons[0].disabled && placeButtons[1].disabled) {
+            placeButtonsDiv.style.display = 'none';
         }
     })
 })

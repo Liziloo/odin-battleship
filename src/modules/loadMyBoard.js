@@ -1,7 +1,7 @@
 export { loadMyBoard }
 
-const loadMyBoard = (board) => {
-    const boardDiv = document.querySelector('.my-board');
+const loadMyBoard = (board, divId) => {
+    const boardDiv = document.getElementById(divId);
     boardDiv.textContent = '';
 
     for (let i = 0; i < board.grid.length; i++) {
