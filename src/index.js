@@ -1,6 +1,7 @@
 import { placeShips } from './modules/placeShips.js';
 import { Player } from './modules/player.js';
 import { round } from './modules/round.js';
+import { loadWin } from './modules/loadWin.js';
 import './styles/comeau-reset.css';
 import './styles/styles.css';
 
@@ -16,6 +17,13 @@ const placeButtons = document.querySelectorAll('.place');
 const boardsDiv = document.getElementById('boards');
 const confirmButton = document.getElementById('confirm');
 const placementBoard = document.getElementById('placement-board')
+const obfuscationDiv = document.getElementById('obfuscation');
+const takeConnDiv = document.getElementById('take-conn');
+const passButton = document.getElementById('pass');
+const receiveButton = document.getElementById('receive');
+const enemyBoard = document.getElementById('enemy-board');
+
+let admiral, enemy;
 
 playerCountDiv.addEventListener('click', function getCount(e) {
     if (e.target.tagName === 'BUTTON') {
@@ -61,8 +69,43 @@ confirmButton.addEventListener('click', function confirmPlacement() {
         placementBoard.style.display = 'none';
         this.removeEventListener('click', confirmPlacement);
         boardsDiv.style.display = 'flex';
+        admiral = player1;
+        enemy = player2;
         round(player1, player2);
     } else {
         boardsDiv.style.display = 'none';
     }
+})
+
+enemyBoard.addEventListener('click', (e) => {
+    if (e.target.classList.contains('cell')) {
+        const xCoord = e.target.dataset.x;
+        const yCoord = e.target.dataset.y;
+        enemy.board.receiveAttack(xCoord, yCoord);
+        if (enemy.board.grid[xCoord][yCoord].ship !== null) {
+            alert("It's a hit!");
+            if (enemy.board.allSunk()) {
+                loadWin();
+            } else {
+                obfuscationDiv.style.display = 'block';
+            }
+        } else {
+            alert("Giving up is the only sure way to fail.");
+            obfuscationDiv.style.display = 'block';
+        }
+    }
+})
+
+passButton.addEventListener('click', () => {
+    boardsDiv.style.display = 'none';
+    takeConnDiv.style.display = 'block';
+    obfuscationDiv.style.display = 'none';
+    admiral = admiral === player1 ? player2 : player1;
+    enemy = enemy === player1 ? player2 : player1;
+})
+
+receiveButton.addEventListener('click', () => {
+    takeConnDiv.style.display = 'none';
+    round(admiral, enemy);
+    boardsDiv.style.display = 'flex';
 })

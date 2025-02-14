@@ -7,7 +7,7 @@
     justify-content: center;
 }
 
-#place-buttons {
+#place-buttons, #confirm, #take-conn, #obfuscation {
     display: none;
 }
 
@@ -23,10 +23,6 @@
     grid-auto-flow: column;
     grid-template-rows: repeat(10, 50px);
     grid-template-columns: repeat(10, 50px);
-}
-
-#confirm {
-    display: none;
 }
 
 .cell {
