@@ -1,6 +1,6 @@
 export { loadWin };
 
-const loadWin = () => {
+const loadWin = (player) => {
     const boardsDiv = document.querySelector('.boards');
-    boardsDiv.textContent = 'You Win!'
+    boardsDiv.textContent = `${player.name} wins!`;
 }
