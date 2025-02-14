@@ -4,6 +4,8 @@ import { round } from './modules/round.js';
 import { loadWin } from './modules/loadWin.js';
 import './styles/comeau-reset.css';
 import './styles/styles.css';
+import { loadMyBoard } from './modules/loadMyBoard.js';
+import { loadEnemyBoard } from './modules/loadEnemyBoard.js';
 
 
 // const name = prompt("What's your name, sailor?");
@@ -58,6 +60,9 @@ placeButtons.forEach((button) => {
         }
         if (placeButtons[0].disabled && placeButtons[1].disabled) {
             placeButtonsDiv.style.display = 'none';
+            if (player2.type === 'computer') {
+                placeShips(player2);
+            }
         }
     })
 })
@@ -83,15 +88,21 @@ enemyBoard.addEventListener('click', (e) => {
         const yCoord = e.target.dataset.y;
         enemy.board.receiveAttack(xCoord, yCoord);
         if (enemy.board.grid[xCoord][yCoord].ship !== null) {
+            loadEnemyBoard(enemy.board, 'enemy-board');
             alert("It's a hit!");
             if (enemy.board.allSunk()) {
                 loadWin();
-            } else {
-                obfuscationDiv.style.display = 'block';
-            }
+                return;
+            } 
         } else {
+            loadEnemyBoard(enemy.board, 'enemy-board');
             alert("Giving up is the only sure way to fail.");
+        };
+        if (enemy.type === 'real') {
             obfuscationDiv.style.display = 'block';
+        } else {
+            admiral.board.computerAttack();
+            round(admiral, enemy);
         }
     }
 })

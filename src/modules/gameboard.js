@@ -1,6 +1,6 @@
 import { Ship } from "./ship.js";
 
-export { Gameboard };
+export { Gameboard, randomCoord };
 
 class Gameboard {
     constructor() {
@@ -60,10 +60,28 @@ class Gameboard {
         return true;
     }
 
+    computerAttack() {
+        let validHit, xCoord, yCoord;
+        do {
+            xCoord = randomCoord();
+            yCoord = randomCoord();
+            validHit = this.receiveAttack(xCoord, yCoord);
+        } while (!validHit);
+        if (this.grid[xCoord][yCoord].ship !== null) {
+            alert("You've been hit!");
+        } else {
+            alert("We've evaded them once again, admiral.")
+        }
+    }
+
     allSunk() {
         for (let ship of this.ships) {
             if (ship.sunk === false) return false;
         }
         return true;
     }
+}
+
+const randomCoord = () => {
+    return Math.floor(Math.random() * 10);
 }
