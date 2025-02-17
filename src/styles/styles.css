@@ -1,3 +1,18 @@
+:root {
+    --cadet-gray: #a0b9bfff;
+    --persian-blue: #2541b2ff;
+    --light-blue: #a5ccd1ff;
+    --naples-yellow: #f4d35eff;
+    --kelly-green: #3ec300ff;
+}
+
+h1 {
+    font-family: "Cherry Bomb One", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 3rem;
+}
+
 .container {
     width: 100vw;
     text-align: center;
