@@ -6,6 +6,14 @@
     --kelly-green: #3ec300ff;
 }
 
+body * {
+    font-family: "Sour Gummy", serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+
 h1 {
     font-family: "Cherry Bomb One", serif;
     font-weight: 400;
@@ -20,6 +28,7 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    font-family: "";
 }
 
 #place-buttons, #confirm, #take-conn, #obfuscation {
