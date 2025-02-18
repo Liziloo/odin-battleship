@@ -26,7 +26,7 @@ const placeShips = (player) => {
                     alert('Sorry admiral, no room to maneuver. Please provide new coordinates.')
                 } else if (availableShips.length <= 0) {
                     this.removeEventListener('click', addShip);
-                    confirmButton.style.display = 'block';
+                    confirmButton.classList.remove('hide');
                     confirmButton.disabled = false;
                 };
                 loadMyBoard(player.board, 'placement-board');

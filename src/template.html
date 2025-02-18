@@ -17,25 +17,31 @@
       <h2></h2>
       <div id="player-count">
         <p>Do you have a human opponent, or is this a computerized war game, admiral?</p>
-        <button class="1">Human Enemy</button>
-        <button class="2">War Game</button>
+        <button class="1">War Game</button>
+        <button class="2">Human Enemy</button>
       </div>
-      <div id="place-buttons">
+      <div id="place-buttons" class="hide">
         <button class="place 1">Place Ships Player 1</button>
         <button class="place 2">Place Ships Player 2</button>
       </div>
       <div class="instructions"></div>
       <div id="boards">
-        <div id="placement-board"></div>
-        <div id="my-board"></div>
-        <div id="enemy-board"></div>
+        <div id="placement-board" class="hide"></div>
+        <div id="my-board" class="hide"></div>
+        <div id="enemy-board" class="hide"></div>
+        <div id="ships">
+          <div id="carrier" class="ship"></div>
+          <div id="battleship" class="ship"></div>
+          <div id="cruiser" class="ship"></div>
+          <div id="destroyer" class="ship"></div>
+        </div>
       </div>
-      <button id="confirm" disabled>Confirm Placement</button>
-      <div id="obfuscation">
+      <button id="confirm" class="hide">Confirm Placement</button>
+      <div id="obfuscation" class="hide">
         <p>Press the button below before passing the screen to your opponent.</p>
         <button id="pass">Apply camouflage!</button>
       </div>
-      <div id="take-conn">
+      <div id="take-conn" class="hide">
         <p>Press the button below to begin your attack.</p>
         <button id="receive">Take the Conn!</button>
       </div>

@@ -23,6 +23,7 @@ import { loadEnemyBoard } from './modules/loadEnemyBoard.js';
     const passButton = document.getElementById('pass');
     const receiveButton = document.getElementById('receive');
     const enemyBoard = document.getElementById('enemy-board');
+    const myBoard = document.getElementById('my-board');
 
     let admiral, enemy;
 
@@ -30,20 +31,21 @@ import { loadEnemyBoard } from './modules/loadEnemyBoard.js';
         if (e.target.tagName === 'BUTTON') {
             playerCount = e.target.className;
             playerCountDiv.removeEventListener('click', getCount);
-            playerCountDiv.style.display = 'none';
-            placeButtonsDiv.style.display = 'block';
+            playerCountDiv.classList.add('hide');
+            placeButtonsDiv.classList.remove('hide');
             player1.name = prompt("What's your name, sailor?");
             if (playerCount === '2') {
                 player2.name = prompt("And you?");
                 placeButtons[0].textContent = `Deploy ${player1.name}'s ships`;
                 placeButtons[1].textContent = `Deploy ${player2.name}'s ships`;
             } else {
-                placeButtons[1].style.display = 'none';
+                placeButtons[1].classList.add('hide');
                 placeButtons[1].disabled = true;
                 placeButtons[0].textContent = 'Deploy your fleet!';
                 player2.type = 'computer';
+                placementBoard.classList.remove('hide');
             }
-            placeButtonsDiv.style.display = 'block';
+            placeButtonsDiv.classList.remove('hide');
         }
     });
 
@@ -51,14 +53,13 @@ import { loadEnemyBoard } from './modules/loadEnemyBoard.js';
         button.addEventListener('click', function callPlace(e) {
             e.target.removeEventListener('click', callPlace);
             e.target.disabled = true;
-            boardsDiv.style.display = 'grid';
             if (e.target.classList.contains('1')) {
                 placeShips(player1);
             } else {
                 placeShips(player2)
             }
             if (placeButtons[0].disabled && placeButtons[1].disabled) {
-                placeButtonsDiv.style.display = 'none';
+                placeButtonsDiv.classList.add('hide');
                 if (player2.type === 'computer') {
                     placeShips(player2);
                 }
@@ -67,17 +68,18 @@ import { loadEnemyBoard } from './modules/loadEnemyBoard.js';
     })
 
     confirmButton.addEventListener('click', function confirmPlacement() {
-        this.style.display = 'none';
+        this.classList.add('hide');
         if (placeButtons[0].disabled && placeButtons[1].disabled) {
             alert("To war!");
-            placementBoard.style.display = 'none';
+            placementBoard.classList.add('hide');
             this.removeEventListener('click', confirmPlacement);
-            boardsDiv.style.display = 'flex';
             admiral = player1;
             enemy = player2;
+            myBoard.classList.remove('hide');
+            enemyBoard.classList.remove('hide');
             round(player1, player2);
         } else {
-            boardsDiv.style.display = 'none';
+            boardsDiv.classList.add('hide');
         }
     })
 
@@ -98,7 +100,7 @@ import { loadEnemyBoard } from './modules/loadEnemyBoard.js';
                 alert("Giving up is the only sure way to fail.");
             };
             if (enemy.type === 'real') {
-                obfuscationDiv.style.display = 'block';
+                obfuscationDiv.classList.remove('hide');
             } else {
                 admiral.board.computerAttack();
                 round(admiral, enemy);
@@ -110,16 +112,16 @@ import { loadEnemyBoard } from './modules/loadEnemyBoard.js';
     })
 
     passButton.addEventListener('click', () => {
-        boardsDiv.style.display = 'none';
-        takeConnDiv.style.display = 'block';
-        obfuscationDiv.style.display = 'none';
+        boardsDiv.classList.add('hide');
+        takeConnDiv.classList.remove('hide');
+        obfuscationDiv.classList.add('hide');
         admiral = admiral === player1 ? player2 : player1;
         enemy = enemy === player1 ? player2 : player1;
     })
 
     receiveButton.addEventListener('click', () => {
-        takeConnDiv.style.display = 'none';
+        takeConnDiv.classList.add('hide');
         round(admiral, enemy);
-        boardsDiv.style.display = 'flex';
+        boardsDiv.classList.remove('hide');
     })
 })();
