@@ -35,38 +35,41 @@
       </div>
     </div>
     <div class="container">
-      <h1>Battleship!!!</h1>
-      <h2></h2>
-      <div id="player-count">
-        <p>Do you have a human opponent, or is this a computerized war game, admiral?</p>
-        <button class="1">War Game</button>
-        <button class="2">Human Enemy</button>
+      <div id="playground">
+        <h1>Battleship!!!</h1>
+        <h2></h2>
+        <div id="player-count">
+          <p>Do you have a human opponent, or is this a computerized war game, admiral?</p>
+          <button class="1">War Game</button>
+          <button class="2">Human Enemy</button>
+        </div>
+        <div id="place-buttons" class="hide">
+          <button class="place 1">Place Ships Player 1</button>
+          <button class="place 2">Place Ships Player 2</button>
+        </div>
+        <div class="instructions"></div>
+        <div id="boards">
+          <div id="placement-board"></div>
+          <div id="my-board" class="hide"></div>
+          <div id="enemy-board" class="hide"></div>
+        </div>
+        <button id="confirm" class="hide">Confirm Placement</button>
+        <div id="obfuscation" class="hide">
+          <p>Press the button below before passing the screen to your opponent.</p>
+          <button id="pass">Apply camouflage!</button>
+        </div>
+        <div id="take-conn" class="hide">
+          <p>Press the button below to begin your attack.</p>
+          <button id="receive">Take the Conn!</button>
+        </div>
       </div>
-      <div id="place-buttons" class="hide">
-        <button class="place 1">Place Ships Player 1</button>
-        <button class="place 2">Place Ships Player 2</button>
-      </div>
-      <div class="instructions"></div>
-      <div id="boards">
-        <div id="placement-board"></div>
-        <div id="my-board" class="hide"></div>
-        <div id="enemy-board" class="hide"></div>
+      <div class="sidebar">
         <div id="ships">
           <div id="carrier" class="ship-image"><img src="./assets/ship-side.png"></div>
           <div id="battleship" class="ship-image"><img src="./assets/ship-side.png"></div>
           <div id="cruiser" class="ship-image"><img src="./assets/ship-side.png"></div>
           <div id="submarine" class="ship-image"><img src="./assets/ship-side.png"></div>
           <div id="destroyer" class="ship-image"><img src="./assets/ship-side.png"></div>
-        </div>
-      </div>
-      <button id="confirm" class="hide">Confirm Placement</button>
-      <div id="obfuscation" class="hide">
-        <p>Press the button below before passing the screen to your opponent.</p>
-        <button id="pass">Apply camouflage!</button>
-      </div>
-      <div id="take-conn" class="hide">
-        <p>Press the button below to begin your attack.</p>
-        <button id="receive">Take the Conn!</button>
       </div>
     </div>
   </body>
