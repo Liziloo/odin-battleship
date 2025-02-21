@@ -1,20 +1,12 @@
 import { randomCoord } from "./gameboard.js";
 import { loadMyBoard } from "./loadMyBoard.js";
+import { shipTypes } from "./ship.js";
 
 export { placeShips };
 
 const placeShips = (player) => {
-  const availableShips = [5, 4, 3, 3, 2];
-
   if (player.type === "real") {
     const shipImages = document.querySelectorAll(".ship-image");
-    const ships = {
-      carrier: 5,
-      battleship: 4,
-      cruiser: 3,
-      submarine: 3,
-      destroyer: 2,
-    };
     let draggedShip, offsetX, offsetY;
     const placementBoard = document.getElementById("placement-board");
     const confirmButton = document.getElementById("confirm");
@@ -42,13 +34,12 @@ const placeShips = (player) => {
       const element = document.elementFromPoint(x, y);
       if (element.classList.contains("cell")) {
         const shipType = draggedShip.getAttribute("id");
-        const draggedShipLength = ships[shipType];
         const xCoord = parseInt(element.dataset.x);
         const yCoord = parseInt(element.dataset.y);
         const validPlacement = player.board.placeShip(
           xCoord,
           yCoord,
-          draggedShipLength,
+          shipType,
           "horizontal",
         );
         if (!validPlacement) {
@@ -66,6 +57,7 @@ const placeShips = (player) => {
       }
     });
   } else {
+    const availableShips = Object.keys(shipTypes);
     for (let ship of availableShips) {
       let validPlacement = false;
       const directions = ["vertical", "horizontal"];
