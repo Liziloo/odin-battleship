@@ -37,6 +37,10 @@ button {
     font-size: 1.25rem;
 }
 
+#playground {
+    height: 100vh;
+}
+
 .container {
     width: 80vw;
     margin-top: 25px;
@@ -46,10 +50,10 @@ button {
     align-items: center;
     justify-content: center;
     background-color: white;
-    gap: 20px;
+    gap: 30px;
 }
 
-#player-count, #place-buttons > * {
+#player-count, #confirm, #place-buttons > * {
     margin: 10px;
 }
 
@@ -64,23 +68,27 @@ button {
 }
 
 .ship-image > img {
-    height: 70px;
+    height: 50px;
+}
+
+.ship-image {
+    background-color: rgb(228, 226, 226);
 }
 
 #carrier {
-    width: 200px;
+    width: 250px;
 }
 
 #battleship {
-    width: 160px;
+    width: 200px;
 }
 
 #cruiser, #submarine {
-    width: 120px;
+    width: 150px;
 }
 
 #destroyer {
-    width: 80px;
+    width: 100px;
 }
 
 .modal-background {
@@ -129,16 +137,11 @@ button {
     flex-direction: column;
 }
 
-#play-area {
-    display: flex;
-    width: 90%;
-}
-
 #boards {
     width: 75%;
-    height: 75vh;
     display: flex;
     justify-content: space-around;
+    gap: 20px;
 }
 
 #my-board, #enemy-board, #placement-board {
@@ -146,11 +149,12 @@ button {
     grid-auto-flow: column;
     grid-template-rows: repeat(10, 50px);
     grid-template-columns: repeat(10, 50px);
+    margin-top: 20px;
 }
 
 .cell {
-    background-color: blue;
-    border: 1px solid black;
+    background-color: var(--persian-blue);
+    border: 1px solid rgba(0, 0, 0, 0.342);
 }
 
 .ship {
