@@ -8,6 +8,9 @@ export { placeShips };
 const placeShips = (player) => {
   if (player.type === "real") {
     const shipImages = document.querySelectorAll(".ship-image");
+    shipImages.forEach((shipImage) => {
+      shipImage.classList.remove("hide");
+    });
     let draggedShip, offsetX, offsetY;
     const placementBoard = document.getElementById("placement-board");
     const confirmButton = document.getElementById("confirm");
@@ -48,12 +51,17 @@ const placeShips = (player) => {
             "Sorry admiral, no room to maneuver. Please provide new coordinates.",
           );
         } else {
-          draggedShip.remove();
+          draggedShip.classList.add("hide");
         }
         loadMyBoard(player.board, "placement-board");
         displayShips();
-        const stillShips = document.querySelector(".ship-image");
-        if (!stillShips) {
+        let hiddenShipCount = 0;
+        shipImages.forEach((shipImage) => {
+          if (shipImage.classList.contains("hide")) {
+            hiddenShipCount++;
+          }
+        });
+        if (hiddenShipCount === 5) {
           confirmButton.classList.remove("hide");
         }
       }

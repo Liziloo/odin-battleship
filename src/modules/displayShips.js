@@ -19,6 +19,7 @@ const displayShips = () => {
     maxRight = -Infinity;
 
   if (carrierDivs.length === 5) {
+
     carrierDivs.forEach((div) => {
       const rect = div.getBoundingClientRect();
       minTop = Math.min(minTop, rect.top);

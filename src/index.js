@@ -71,6 +71,7 @@ import { loadEnemyBoard } from "./modules/loadEnemyBoard.js";
     button.addEventListener("click", function callPlace(e) {
       e.target.removeEventListener("click", callPlace);
       e.target.disabled = true;
+      boardsDiv.classList.remove("hide");
       if (e.target.classList.contains("1")) {
         placeShips(player1);
       } else {
