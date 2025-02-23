@@ -88,6 +88,7 @@ import { loadEnemyBoard } from "./modules/loadEnemyBoard.js";
   confirmButton.addEventListener("click", function confirmPlacement() {
     this.classList.add("hide");
     if (placeButtons[0].disabled && placeButtons[1].disabled) {
+      placementBoard.remove();
       alert("To war!");
       placementBoard.classList.add("hide");
       this.removeEventListener("click", confirmPlacement);

@@ -1,3 +1,4 @@
+import { displayShips } from "./displayShips.js";
 import { randomCoord } from "./gameboard.js";
 import { loadMyBoard } from "./loadMyBoard.js";
 import { shipTypes } from "./ship.js";
@@ -50,6 +51,7 @@ const placeShips = (player) => {
           draggedShip.remove();
         }
         loadMyBoard(player.board, "placement-board");
+        displayShips();
         const stillShips = document.querySelector(".ship-image");
         if (!stillShips) {
           confirmButton.classList.remove("hide");
