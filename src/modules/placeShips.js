@@ -63,6 +63,7 @@ const placeShips = (player) => {
         });
         if (hiddenShipCount === 5) {
           confirmButton.classList.remove("hide");
+          placementBoard.removeEventListener("drop", addShip);
         }
       }
     });
