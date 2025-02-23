@@ -10,6 +10,7 @@ const displayShips = () => {
 
   const carrierImage = document.createElement("img");
   carrierImage.src = shipTop;
+  carrierImage.classList.add('ship-illustration');
   carrierImage.style.position = "absolute";
   carrierImage.style.zIndex = "1";
 
