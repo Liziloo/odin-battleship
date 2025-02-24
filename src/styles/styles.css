@@ -61,10 +61,21 @@ button {
     margin: 15px;
 }
 
-#ships {
-    display: flex;
-    flex-direction: column;
+#rotate-buttons {
+    margin-top: 50px;
+}
+
+.horizontal {
+    display: grid;
     gap: 10px;
+    
+}
+
+.vertical {
+    display: grid;
+    gap: 10px;
+    grid-auto-flow: row;
+    transform: rotate(90deg);
 }
 
 .ship-image > img {

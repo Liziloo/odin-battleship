@@ -10,7 +10,7 @@ const displayShips = () => {
 
   const carrierImage = document.createElement("img");
   carrierImage.src = shipTop;
-  carrierImage.classList.add('ship-illustration');
+  carrierImage.classList.add("ship-illustration");
   carrierImage.style.position = "absolute";
   carrierImage.style.zIndex = "1";
 
@@ -20,7 +20,6 @@ const displayShips = () => {
     maxRight = -Infinity;
 
   if (carrierDivs.length === 5) {
-
     carrierDivs.forEach((div) => {
       const rect = div.getBoundingClientRect();
       minTop = Math.min(minTop, rect.top);

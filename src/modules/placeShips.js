@@ -7,14 +7,35 @@ export { placeShips };
 
 const placeShips = (player) => {
   if (player.type === "real") {
+    const orientationDiv = document.querySelector("#rotate-buttons");
+    const orientationButtons = document.querySelectorAll(".orientation");
     const shipImages = document.querySelectorAll(".ship-image");
+    const placementBoard = document.getElementById("placement-board");
+    const confirmButton = document.getElementById("confirm");
+    const shipsDiv = document.querySelector("#ships");
+    const h2 = document.querySelector("h2");
+
+    let draggedShip, offsetX, offsetY;
+
+    let shipOrientation = "horizontal";
+
+    orientationDiv.classList.remove("hide");
+    orientationButtons.forEach((button) => {
+      const buttonDirection = button.getAttribute("id");
+      button.addEventListener("click", () => {
+        shipOrientation = buttonDirection;
+        shipsDiv.classList.add(buttonDirection);
+        if (buttonDirection === "horizontal") {
+          shipsDiv.classList.remove("vertical");
+        } else {
+          shipsDiv.classList.remove("horizontal");
+        }
+      });
+    });
+
     shipImages.forEach((shipImage) => {
       shipImage.classList.remove("hide");
     });
-    let draggedShip, offsetX, offsetY;
-    const placementBoard = document.getElementById("placement-board");
-    const confirmButton = document.getElementById("confirm");
-    const h2 = document.querySelector("h2");
 
     h2.textContent = "Please place your ships";
 
@@ -23,8 +44,9 @@ const placeShips = (player) => {
     shipImages.forEach((ship) => {
       ship.addEventListener("dragstart", (e) => {
         draggedShip = e.currentTarget;
-        offsetX = e.clientX - ship.offsetLeft;
-        offsetY = e.clientY - ship.offsetTop;
+        const rect = draggedShip.getBoundingClientRect();
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
       });
     });
 
@@ -44,7 +66,7 @@ const placeShips = (player) => {
           xCoord,
           yCoord,
           shipType,
-          "horizontal",
+          shipOrientation,
         );
         if (!validPlacement) {
           alert(
