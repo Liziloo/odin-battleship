@@ -35,25 +35,44 @@
       </div>
     </div>
     <div class="container">
-      <div id="playground">
+      <div id="header">
         <h1>Battleship!!!</h1>
-        <h2></h2>
-        <div id="player-count">
-          <p>Do you have a human opponent, or is this a computerized war game, admiral?</p>
-          <button class="1">War Game</button>
-          <button class="2">Human Enemy</button>
+          <h2></h2>
+          <div id="player-count">
+            <p>Do you have a human opponent, or is this a computerized war game, admiral?</p>
+            <button class="1">War Game</button>
+            <button class="2">Human Enemy</button>
+          </div>
+          <div id="place-buttons" class="hide">
+            <button class="place 1">Place Ships Player 1</button>
+            <button class="place 2">Place Ships Player 2</button>
+          </div>
+          <div class="instructions"></div>
+      </div>
+      <div id="placement-div" class="hide">
+        <div id="placement-main">
+          <div id="placement-board" class="board"></div>
+          <button id="confirm" class="hide">Confirm Placement</button>
         </div>
-        <div id="place-buttons" class="hide">
-          <button class="place 1">Place Ships Player 1</button>
-          <button class="place 2">Place Ships Player 2</button>
+        <div class="sidebar">
+          <div id="ships">
+            <div id="carrier" class="ship-image horizontal" draggable="true"><img src="./assets/ship-side.png"></div>
+            <div id="battleship" class="ship-image horizontal" draggable="true"><img src="./assets/ship-side.png"></div>
+            <div id="cruiser" class="ship-image horizontal" draggable="true"><img src="./assets/ship-side.png"></div>
+            <div id="submarine" class="ship-image horizontal" draggable="true"><img src="./assets/ship-side.png"></div>
+            <div id="destroyer" class="ship-image horizontal" draggable="true"><img src="./assets/ship-side.png"></div>
+          </div>
+          <div id="rotate-buttons">
+            <button id="horizontal" class="orientation">Horizontal</button>
+            <button id="vertical" class="orientation">Vertical</button>
+          </div>
         </div>
-        <div class="instructions"></div>
+      </div>
+      <div id="playground" class="hide">
         <div id="boards">
-          <div id="placement-board"></div>
-          <div id="my-board" class="hide"></div>
-          <div id="enemy-board" class="hide"></div>
+          <div id="my-board" class="hide board"></div>
+          <div id="enemy-board" class="hide board"></div>
         </div>
-        <button id="confirm" class="hide">Confirm Placement</button>
         <div id="obfuscation" class="hide">
           <p>Press the button below before passing the screen to your opponent.</p>
           <button id="pass">Apply camouflage!</button>
@@ -63,19 +82,6 @@
           <button id="receive">Take the Conn!</button>
         </div>
       </div>
-      <div class="sidebar">
-        <div id="ships">
-          <div id="carrier" class="ship-image horizontal" draggable="true"><img src="./assets/ship-side.png"></div>
-          <div id="battleship" class="ship-image horizontal" draggable="true"><img src="./assets/ship-side.png"></div>
-          <div id="cruiser" class="ship-image horizontal" draggable="true"><img src="./assets/ship-side.png"></div>
-          <div id="submarine" class="ship-image horizontal" draggable="true"><img src="./assets/ship-side.png"></div>
-          <div id="destroyer" class="ship-image horizontal" draggable="true"><img src="./assets/ship-side.png"></div>
-        </div>
-        <div id="rotate-buttons">
-          <button id="horizontal" class="orientation">Horizontal</button>
-          <button id="vertical" class="orientation">Vertical</button>
-        </div>
-      </div> 
     </div>
   </body>
 </html>

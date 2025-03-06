@@ -18,6 +18,7 @@ const displayShips = () => {
   carrierImage.style.position = "absolute";
   carrierImage.style.zIndex = "1";
   carrierImage.setAttribute("id", "carrier-image");
+  carrierImage.classList.add("ship-illustration");
 
   let minTop = Infinity,
     maxBottom = -Infinity,

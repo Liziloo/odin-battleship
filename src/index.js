@@ -5,6 +5,7 @@ import { loadWin } from "./modules/loadWin.js";
 import "./styles/comeau-reset.css";
 import "./styles/styles.css";
 import { loadEnemyBoard } from "./modules/loadEnemyBoard.js";
+import { displayShips } from "./modules/displayShips.js";
 
 (function () {
   const player1 = new Player("real");
@@ -28,6 +29,8 @@ import { loadEnemyBoard } from "./modules/loadEnemyBoard.js";
   const nameDiv2 = document.getElementById("name-2");
   const nameSubmitButton = document.getElementById("name-submit");
   const modalClose = document.querySelector(".close-button");
+  const playgroundDiv = document.querySelector("#playground");
+  const placementDiv = document.querySelector("#placement-div");
 
   let admiral, enemy;
 
@@ -71,7 +74,7 @@ import { loadEnemyBoard } from "./modules/loadEnemyBoard.js";
     button.addEventListener("click", function callPlace(e) {
       e.target.removeEventListener("click", callPlace);
       e.target.disabled = true;
-      boardsDiv.classList.remove("hide");
+      placementDiv.classList.remove("hide");
       if (e.target.classList.contains("1")) {
         placeShips(player1);
       } else {
@@ -93,17 +96,17 @@ import { loadEnemyBoard } from "./modules/loadEnemyBoard.js";
     });
     this.classList.add("hide");
     if (placeButtons[0].disabled && placeButtons[1].disabled) {
-      placementBoard.remove();
+      placementDiv.remove();
       alert("To war!");
-      placementBoard.classList.add("hide");
       this.removeEventListener("click", confirmPlacement);
       admiral = player1;
       enemy = player2;
+      playgroundDiv.classList.remove("hide");
       myBoard.classList.remove("hide");
       enemyBoard.classList.remove("hide");
       round(player1, player2);
     } else {
-      boardsDiv.classList.add("hide");
+      placementDiv.classList.add("hide");
     }
   });
 
@@ -136,6 +139,10 @@ import { loadEnemyBoard } from "./modules/loadEnemyBoard.js";
   });
 
   passButton.addEventListener("click", () => {
+    const shipImages = document.querySelectorAll(".ship-illustration");
+    shipImages.forEach((element) => {
+      element.remove();
+    });
     boardsDiv.classList.add("hide");
     takeConnDiv.classList.remove("hide");
     obfuscationDiv.classList.add("hide");
@@ -147,5 +154,6 @@ import { loadEnemyBoard } from "./modules/loadEnemyBoard.js";
     takeConnDiv.classList.add("hide");
     round(admiral, enemy);
     boardsDiv.classList.remove("hide");
+    displayShips()
   });
 })();

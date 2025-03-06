@@ -22,33 +22,22 @@ body * {
     font-variation-settings: "wdth" 100;
 }
 
+.container {
+    width: 80vw;
+    height: 95vh;
+    margin-top: 25px;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
 h1 {
     font-family: "Cherry Bomb One", serif;
     font-weight: 400;
     font-style: normal;
     font-size: 3rem;
-}
-
-button {
-    background-color: var(--light-blue);
-    padding: 0 10px;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 1.25rem;
-}
-
-#playground {
-    height: 100vh;
-}
-
-.container {
-    width: 80vw;
-    margin-top: 25px;
-    border-radius: 10px;
-    text-align: center;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    background-color: white;
 }
 
 #player-count, #confirm, #place-buttons > * {
@@ -59,8 +48,27 @@ button {
     margin: 15px;
 }
 
-#rotate-buttons {
-    margin-top: 50px;
+.board {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(10, 50px);
+    grid-template-columns: repeat(10, 50px);
+    margin-top: 20px;
+}
+
+#placement-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin: 0 50px;
+}
+
+#placement-main {
+    height: 500px;
+}
+
+.sidebar {
+    width: 270px;
 }
 
 #ships {
@@ -69,6 +77,10 @@ button {
     grid-template-rows: repeat(5, 50px);
     padding: 200px 20px 0;
     width: 100%;
+}
+
+#rotate-buttons {
+    margin-top: 50px;
 }
 
 #ships.rotate {
@@ -91,8 +103,8 @@ button {
 }
 
 .overlay-image {
-    width: 50px;
-    height: 250px;
+    width: 250px;
+    height: 50px;
 }
 
 .overlay-image-rotated {
@@ -115,6 +127,18 @@ button {
 
 #destroyer {
     width: 100px;
+}
+
+#playground {
+    height: 100%;
+    justify-items: center;
+}
+
+#boards {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
 }
 
 .modal-background {
@@ -150,36 +174,17 @@ button {
     padding: 7px;
 }
 
+.input-div {
+    display: flex;
+    flex-direction: column;
+}
+
 .modal-footer {
     border-radius: 0 0 5px 5px;
     padding: 7px;
     background-color: white;
     display: flex;
     justify-content: end;
-}
-
-.input-div {
-    display: flex;
-    flex-direction: column;
-}
-
-#boards {
-    width: 75%;
-    display: flex;
-    justify-content: space-around;
-    gap: 20px;
-}
-
-#playground {
-    justify-items: center;
-}
-
-#my-board, #enemy-board, #placement-board {
-    display: grid;
-    grid-auto-flow: column;
-    grid-template-rows: repeat(10, 50px);
-    grid-template-columns: repeat(10, 50px);
-    margin-top: 20px;
 }
 
 .cell {
@@ -209,4 +214,12 @@ button {
     left: -9999px !important;
     width: 0;
     height: 0;
+ }
+
+ button {
+     background-color: var(--light-blue);
+     padding: 0 10px;
+     border-radius: 5px;
+     font-weight: bold;
+     font-size: 1.25rem;
  }
