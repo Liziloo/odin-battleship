@@ -2,6 +2,11 @@ import shipTop from "../assets/ship-top.png";
 export { displayShips };
 
 const displayShips = () => {
+  const oldCarrier = document.getElementById("carrier-image");
+  if (oldCarrier) {
+    oldCarrier.remove();
+  }
+
   const carrierDivs = document.querySelectorAll(".carrier");
   const battleshipDivs = document.querySelectorAll(".battleship");
   const cruiserDivs = document.querySelectorAll(".cruiser");
@@ -10,9 +15,9 @@ const displayShips = () => {
 
   const carrierImage = document.createElement("img");
   carrierImage.src = shipTop;
-  carrierImage.classList.add("ship-illustration");
   carrierImage.style.position = "absolute";
   carrierImage.style.zIndex = "1";
+  carrierImage.setAttribute("id", "carrier-image");
 
   let minTop = Infinity,
     maxBottom = -Infinity,
@@ -27,13 +32,22 @@ const displayShips = () => {
       minLeft = Math.min(minLeft, rect.left);
       maxRight = Math.max(maxRight, rect.right);
 
+      const rectWidth = maxRight - minLeft;
+      const rectHeight = maxBottom - minTop;
+
       carrierImage.style.top = minTop + "px";
       carrierImage.style.left = minLeft + "px";
-      carrierImage.style.width = maxRight - minLeft + "px";
-      carrierImage.style.height = maxBottom - minTop + "px";
-      carrierImage.classList.add("overlay-image");
 
       document.body.appendChild(carrierImage);
+      if (rectWidth < rectHeight) {
+        carrierImage.classList.remove("overlay-image");
+        carrierImage.classList.add("overlay-image-rotated");
+        carrierImage.style.top = minTop + 100 + "px";
+        carrierImage.style.left = minLeft - 100 + "px";
+      } else {
+        carrierImage.classList.remove("overlay-image-rotated");
+        carrierImage.classList.add("overlay-image");
+      }
     });
   }
 };

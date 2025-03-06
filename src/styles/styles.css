@@ -46,11 +46,9 @@ button {
     margin-top: 25px;
     border-radius: 10px;
     text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
     background-color: white;
-    gap: 30px;
 }
 
 #player-count, #confirm, #place-buttons > * {
@@ -65,17 +63,23 @@ button {
     margin-top: 50px;
 }
 
-.horizontal {
+#ships {
     display: grid;
     gap: 10px;
-    
+    grid-template-rows: repeat(5, 50px);
+    padding: 200px 20px 0;
+    width: 100%;
+}
+
+#ships.rotate {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(5, 50px);
 }
 
 .vertical {
-    display: grid;
-    gap: 10px;
-    grid-auto-flow: row;
-    transform: rotate(90deg);
+    transform: rotate(-90deg) translateX(-100%);
+    transform-origin: top left;
 }
 
 .ship-image > img {
@@ -84,6 +88,17 @@ button {
 
 .ship-image {
     background-color: rgb(228, 226, 226);
+}
+
+.overlay-image {
+    width: 50px;
+    height: 250px;
+}
+
+.overlay-image-rotated {
+    transform: rotate(90deg);
+    width: 250px;
+    height: 50px;
 }
 
 #carrier {
@@ -153,6 +168,10 @@ button {
     display: flex;
     justify-content: space-around;
     gap: 20px;
+}
+
+#playground {
+    justify-items: center;
 }
 
 #my-board, #enemy-board, #placement-board {

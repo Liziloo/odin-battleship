@@ -12,7 +12,8 @@ const placeShips = (player) => {
     const shipImages = document.querySelectorAll(".ship-image");
     const placementBoard = document.getElementById("placement-board");
     const confirmButton = document.getElementById("confirm");
-    const shipsDiv = document.querySelector("#ships");
+    const shipsGrid = document.getElementById("ships");
+    const shipDivs = document.querySelectorAll(".ship-image");
     const h2 = document.querySelector("h2");
 
     let draggedShip, offsetX, offsetY;
@@ -24,12 +25,19 @@ const placeShips = (player) => {
       const buttonDirection = button.getAttribute("id");
       button.addEventListener("click", () => {
         shipOrientation = buttonDirection;
-        shipsDiv.classList.add(buttonDirection);
-        if (buttonDirection === "horizontal") {
-          shipsDiv.classList.remove("vertical");
+        if (shipOrientation === "vertical") {
+          shipsGrid.classList.add("rotate");
         } else {
-          shipsDiv.classList.remove("horizontal");
+          shipsGrid.classList.remove("rotate");
         }
+        shipDivs.forEach((element) => {
+          element.classList.add(buttonDirection);
+          if (buttonDirection === "horizontal") {
+            element.classList.remove("vertical");
+          } else {
+            element.classList.remove("horizontal");
+          }
+        });
       });
     });
 
